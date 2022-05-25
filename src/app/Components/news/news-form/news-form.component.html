@@ -1,0 +1,62 @@
+<!-- Loading spinner -->
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Formulario -->
+<form [formGroup]="newsForm">
+    
+    <div class="row">
+        <div class="form-group col-12 col-lg-6">
+            <label for="titulo" class="form-label mt-3">Título</label>
+            <input type="text" class="form-control" [formControl]="titulo" [class.is-invalid]="titulo.errors && pressedSave" [readonly]="isReadOnly">
+
+            <div class="invalid-feedback" *ngIf="titulo.errors?.['required']">Este campo es obligatorio.</div>
+            <div class="invalid-feedback" *ngIf="titulo.errors?.['maxlength']">El título no puede superar los 60 caracteres.</div>  
+        </div>
+        <div class="form-group col-12 col-sm-4 col-lg-2">
+            <label for="created_at" class="form-label mt-3">Fecha</label>
+            <input type="text" class="form-control" [formControl]="created_at" readonly>
+        </div>
+        <div class="form-group col-12 col-sm-8 col-lg-4">
+            <label for="autor" class="form-label mt-3">Autor</label>
+            <input type="text" class="form-control" [formControl]="autor" readonly>
+        </div>
+    </div>
+ 
+    <div class="row mt-3">  
+        <div class="form-group col-12">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" [formControl]="descripcion" rows="14" [class.is-invalid]="descripcion.errors && pressedSave" [readonly]="isReadOnly"></textarea>
+        
+            <div class="invalid-feedback" *ngIf="descripcion.errors?.['required']">Este campo es obligatorio.</div>
+        </div>
+    </div>
+
+    <div *ngIf="canEdit" class="formButtons desktopButtons">
+        <button *ngIf="isUpdateMode" class="btn btn-danger mt-4" (click)="deleteNews(noticia.id)"><i class="fa-solid fa-trash-can"></i>&nbsp; Eliminar</button>
+        <button *ngIf="isReadOnly" class="btn btn-warning mt-4" (click)="activateEdit()"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</button>
+        <button *ngIf="!isReadOnly" class="btn btn-success mt-4" (click)="saveNews()"><i class="fa-solid fa-check"></i>&nbsp; Guardar</button>
+    </div>  
+</form>
+
+<div class="clearFloat padding"></div>
+
+<!-- Botón flotante sólo visible en móviles -->
+<div *ngIf="canEdit" class="fab-container">
+    <div *ngIf="isReadOnly" class="fab">
+      <div class="fab-content">
+        <span class="material-icons">more_vert</span>
+      </div>
+    </div>
+    <div *ngIf="isReadOnly" class="sub-button edit">
+        <span (click)="activateEdit()" class="material-icons">edit</span>
+    </div>
+    <div *ngIf="isReadOnly" class="sub-button delete">
+        <span (click)="deleteNews(noticia.id)" class="material-icons">delete_forever</span>
+    </div>
+
+    <div *ngIf="!isReadOnly" class="fab save">
+        <div class="fab-content">
+          <span (click)="saveNews()" class="material-icons">done</span>
+        </div>
+    </div>
+</div>

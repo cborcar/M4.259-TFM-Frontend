@@ -1,0 +1,89 @@
+#newsList {
+    margin-top: 50px;
+    padding-bottom: 30px;
+}
+
+button {
+    background-color: #2e556d;
+    border: 1px solid #2e556d;
+    margin-bottom: 30px;
+}
+
+.noticia {
+    background: #ffffff;
+    margin-bottom: 30px;
+    padding: 2rem 2.5rem;
+    border-bottom: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.newsHeader span {
+    padding-left: 20px;
+    padding-bottom: 30px;
+    font-size: 1.2rem;
+    float: right;
+}
+
+.newsBody {
+    clear: both;
+    margin-top: 30px;
+    text-align: justify;
+}
+
+a {
+    color: #2e556d;
+}
+
+a:hover {
+    color: rgb(156, 16, 16);
+}
+
+.alignRight {
+    text-align: right;
+}
+
+/* Botón flotante solo visible en móviles */
+.fab-container {
+    display:  none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 120px;
+    right: 40px;
+    background-color: #2e556d;
+    box-shadow: 2px 2px 3px #999;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+
+    .fab-content {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100%; 
+        width: 100%;
+        .material-icons {
+          color: white;
+          font-size: 36px;
+        }
+      }
+  }
+
+/* Adaptaciones para móviles */
+@media screen and (max-width: 767px) {
+    #newsList {
+        margin-top: 35px;
+        padding-bottom: 80px;
+    }
+    .noticia {
+        padding: 1.5rem 2rem;
+    }
+
+    .desktopButtons {
+        display: none;
+    }
+
+    .fab-container {
+        display: flex;
+    }
+}

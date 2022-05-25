@@ -1,0 +1,75 @@
+<!-- Loading spinner -->
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Listado de usuarios -->
+<div id="userList">
+
+    <button class="btn btn-primary desktopButtons" (click)="userForm('')">
+        <i class="fa-solid fa-plus"></i>&nbsp; Nuevo usuario
+    </button>
+
+    <!-- Listado de usuarios versión escritorio -->
+    <div class="container itemsListDesktop">
+        <table>
+            <thead>
+                <tr>
+                    <th>&nbsp; Correo</th>
+                    <th>&nbsp; Usuario</th>
+                    <th>&nbsp; Perfil</th>
+                    <th>&nbsp; Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="greyBorder" *ngFor="let user of users">
+                    <td>{{user.email}}</td>
+                    <td>{{user.apellidos}}, {{user.nombre}}</td>
+                    <td>{{user.perfil}}</td>
+                    <td>
+                        <button class="blueIcon" title="Editar" (click)="userForm(user.id)">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </button>
+                        <button *ngIf="user.id != this.loggedUser.id" class="blueIcon" title="Eliminar" (click)="deleteUser(user.id)">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Listado de usuarios versión móvil -->
+    <div class="container itemListMobile">
+        <div class="itemMobile" *ngFor="let user of users">
+            <div>
+                <span class="requestHeaderLeft">
+                    {{ user.apellidos }}, {{ user.nombre }}
+                </span>
+                <span class="requestHeaderRight">
+                  {{ user.perfil }}
+                </span>
+            </div>
+            <div class="requestBody">
+              <p>
+                {{ user.email }}
+              </p>
+              <p class="alignRight" >
+                <button class="blueIcon" title="Editar" (click)="userForm(user.id)">
+                    <i class="fa-solid fa-xl fa-user-pen"></i>
+                </button>
+                &nbsp;
+                <button *ngIf="user.id != this.loggedUser.id" class="blueIcon" title="Eliminar" (click)="deleteUser(user.id)">
+                    <i class="fa-solid fa-xl fa-trash"></i>
+                </button>
+              </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botón flotante solo visible en móviles -->
+<div class="fab-container">
+    <div class="fab-content">
+      <span class="material-icons" (click)="userForm('')">add</span>
+    </div>
+</div>

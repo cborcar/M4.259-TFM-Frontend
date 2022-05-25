@@ -1,0 +1,223 @@
+input[readonly], textarea[readonly], select[disabled] {
+    background-color: #ffffff;
+}
+
+.formButtons {
+    float: right;
+}
+
+.formButtons button{
+    margin-left: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.blueButton {
+    background-color: #2e556d;
+    border: 1px solid #2e556d;
+}
+
+.clearFloat {
+    clear: both;
+}
+
+.padding {
+    padding-bottom: 30px;
+}
+
+.blueIcon {
+    background-color: #ffffff;
+    border: none;
+    color: #2e556d;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    width: 100%;
+}
+
+.itemsListDesktop {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.greyBorder {
+    border-top: 1px solid #ced4da;
+}
+
+th {
+    padding-bottom: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+.Abierta {
+    background-color:#fff2cc;
+    border: 1px solid #e3c877;
+    border-radius: 5px;
+    padding: 3px 6px;
+}
+
+.Retrasada {
+    background-color:#e1d5e7;
+    border: 1px solid #9876a8;
+    border-radius: 5px;
+    padding: 3px 6px;
+}
+
+.Resuelta {
+    background-color:#d5e8d4;
+    border: 1px solid #8dba75;
+    border-radius: 5px;
+    padding: 3px 6px;
+}
+
+.Cancelada {
+    background-color:#f8cecc;
+    border: 1px solid #ba5b57;
+    border-radius: 5px;
+    padding: 3px 6px;
+}
+
+//Listado de solicitudes versión móviles
+.itemListMobile {
+    display: none;
+    border-radius: 5px;
+    padding: 0;
+    border: 1px solid #ced4da;
+    background-color: #ffffff;
+}
+
+.itemMobile {
+    padding: 1rem 1.7rem 0.4rem 1.3rem;
+    border-bottom: 1px solid #ced4da;
+    cursor: pointer;
+}
+
+.itemMobile:hover {
+    background-color: #dddddd;
+}
+
+.requestHeaderLeft {
+    float: left;
+}
+
+.requestHeaderRight {
+    float: right;
+    font-weight: bold;
+}
+
+.requestBody {
+    margin-top: 35px;
+    clear: both;
+    text-align: justify;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+/* Botón flotante solo visible en móviles */
+.fab-container {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    user-select: none;
+    position: absolute;
+    bottom: 30px; right: 30px;
+    &:hover {
+      height: 100%;
+      .sub-button:nth-child(2) { transform: translateY(-80px)}
+      .sub-button:nth-child(3) { transform: translateY(-140px)}
+      .sub-button:nth-child(4) {transform: translateY(-200px)}
+      .sub-button:nth-child(5) {transform: translateY(-260px)}
+    }
+    
+    .fab {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 120px;
+      right: 40px;
+      background-color: #2e556d;
+      box-shadow: 2px 2px 3px #999;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+  
+      .fab-content {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100%; 
+        width: 100%;
+        .material-icons {
+          color: white;
+          font-size: 36px;
+        }
+      }
+    }
+  
+    .sub-button {
+      position: fixed;
+      display: flex;
+      align-items: center; 
+      justify-content: center;
+      height: 50px; 
+      width: 50px;
+      bottom: 125px;
+      right: 45px;
+      border-radius: 50%;
+      box-shadow: 2px 2px 3px #999;
+      transition: all .3s ease;
+      &:hover {
+        cursor: pointer;
+      }
+      .material-icons {
+        color: white;
+      }
+    }
+
+    .edit {
+        background-color: #ffc107;
+    }
+
+    .add {
+        background-color: #2e556d;
+    }
+
+    .save {
+        background-color: #198754;
+        box-shadow: 2px 2px 3px #999;
+        border-radius: 50%;
+    }
+  }
+
+/* Adaptaciones para móviles */
+@media screen and (max-width: 767px) {
+    .padding {
+        padding-bottom: 110px;
+    }
+
+    .itemsListDesktop {
+        display: none;
+    }
+
+    .itemListMobile {
+        display: block;
+    }
+    
+    .desktopButtons {
+        display: none;
+    }
+
+    .fab-container {
+        display: flex;
+    }
+}

@@ -1,0 +1,127 @@
+#userList {
+    margin-top: 50px;
+    padding-bottom: 30px;
+}
+
+button {
+    background-color: #2e556d;
+    border: 1px solid #2e556d;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+}
+
+.blueIcon {
+    background-color: #ffffff;
+    border: none;
+    color: #2e556d;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.itemsListDesktop {
+    background: #ffffff;
+    margin-bottom: 30px;
+    padding: 1rem 2rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.greyBorder {
+    border-top: 1px solid #ced4da;
+}
+
+th {
+    padding-bottom: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+//Listado de usuarios versión móviles
+.itemListMobile {
+    display: none;
+    border-radius: 5px;
+    padding: 0;
+    border: 1px solid #ced4da;
+    background-color: #ffffff;
+}
+
+.itemMobile {
+    padding: 1rem 1.7rem 0.4rem 1.3rem;
+    border-bottom: 1px solid #ced4da;
+}
+
+.requestHeaderLeft {
+    float: left;
+}
+
+.requestHeaderRight {
+    float: right;
+    font-weight: bold;
+}
+
+.requestBody {
+    margin-top: 35px;
+    clear: both;
+    text-align: justify;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+/* Botón flotante solo visible en móviles */
+.fab-container {
+    display:  none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 120px;
+    right: 40px;
+    background-color: #2e556d;
+    box-shadow: 2px 2px 3px #999;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+
+    .fab-content {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100%; 
+        width: 100%;
+        .material-icons {
+          color: white;
+          font-size: 36px;
+        }
+      }
+  }
+
+/* Adaptaciones para móviles */
+@media screen and (max-width: 767px) {
+    #userList {
+        margin-top: 35px;
+        padding-bottom: 110px;
+    }
+
+    .itemsListDesktop {
+        display: none;
+    }
+
+    .itemListMobile {
+        display: block;
+    }
+    
+    .desktopButtons {
+        display: none;
+    }
+
+    .fab-container {
+        display: flex;
+    }
+}

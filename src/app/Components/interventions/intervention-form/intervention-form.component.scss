@@ -1,0 +1,72 @@
+input[readonly], textarea[readonly], select[disabled] {
+    background-color: #ffffff;
+}
+
+.formButtons {
+    float: right;
+}
+
+.formButtons button{
+    margin-left: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.clearFloat {
+    clear: both;
+}
+
+.padding {
+    padding-bottom: 30px;
+}
+
+/* Botón flotante solo visible en móviles */
+.fab-container {
+    display: none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 120px;
+    right: 40px;
+    cursor: pointer;
+    z-index: 2;
+
+    .fab-content {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100%; 
+        width: 100%;
+        .material-icons {
+          color: white;
+          font-size: 36px;
+        }
+    }
+
+    .edit {
+        background-color: #ffc107;
+        border-radius: 50%;
+        box-shadow: 2px 2px 3px #999;
+    }
+    
+    .save {
+        background-color: #198754;
+        border-radius: 50%;
+        box-shadow: 2px 2px 3px #999;
+    }
+}
+
+/* Adaptaciones para móviles */
+@media screen and (max-width: 767px) {
+    .padding {
+        padding-bottom: 110px;
+    }
+
+    .desktopButtons {
+        display: none;
+    }
+
+    .fab-container {
+        display: flex;
+    }
+}

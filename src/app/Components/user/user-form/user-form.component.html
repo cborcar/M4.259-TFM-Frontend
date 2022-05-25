@@ -1,0 +1,81 @@
+<!-- Loading spinner -->
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Formulario -->
+<form [formGroup]="userForm">
+    
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label for="nombre" class="form-label mt-3">Nombre</label>
+            <input type="text" class="form-control" [class.is-invalid]="nombre.errors && pressedSave" [formControl]="nombre">
+
+            <div class="invalid-feedback" *ngIf="nombre.errors?.['required']">Este campo es obligatorio.</div>  
+            <div class="invalid-feedback" *ngIf="nombre.errors?.['maxlength']">El nombre no puede superar los 60 caracteres.</div>  
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label for="apellidos" class="form-label mt-3">Apellidos</label>
+            <input type="text" class="form-control" [class.is-invalid]="apellidos.errors && pressedSave" [formControl]="apellidos">
+
+            <div class="invalid-feedback" *ngIf="apellidos.errors?.['required']">Este campo es obligatorio.</div>   
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-12">
+            <label for="email" class="form-label mt-3">Correo electrónico</label>
+            <input type="text" class="form-control" [class.is-invalid]="email.errors && pressedSave" [formControl]="email">
+
+            <div class="invalid-feedback" *ngIf="email.errors?.['required']">Este campo es obligatorio.</div>
+            <div class="invalid-feedback" *ngIf="email.errors?.['pattern']">El correo no tiene un formato válido.</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label for="password" class="form-label mt-3">Contraseña</label>
+            <input type="password" class="form-control" [class.is-invalid]="password.errors && pressedSave" [formControl]="password" placeholder="{{ passPlaceholder }}">
+
+            <div class="invalid-feedback" *ngIf="password.errors?.['required']">Este campo es obligatorio.</div>   
+            <div class="invalid-feedback" *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+            <div class="invalid-feedback" *ngIf="password.errors?.['maxlength']">La contraseña no puede superar los 16 caracteres.</div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label for="password_confirmation" class="form-label mt-3">Confirma contraseña</label>
+            <input type="password" class="form-control" [class.is-invalid]="password_confirmation.errors && pressedSave" [formControl]="password_confirmation">
+        
+            <div class="invalid-feedback" *ngIf="password_confirmation.errors?.['required']">Este campo es obligatorio.</div>   
+            <div class="invalid-feedback" *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+            <div class="invalid-feedback" *ngIf="password.errors?.['maxlength']">La contraseña no puede superar los 16 caracteres.</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label for="foto" class="form-label mt-3">Imagen de perfil</label>
+            <input #imageInput class="form-control" type="file" id="foto" accept="image/*" [formControl]="foto" (change)="uploadImage($event)">
+        </div>
+
+        <div class="form-group col-12 col-md-6">
+            <label for="perfil" class="form-label mt-3">Perfil</label>
+            <select id="perfil" class="form-select" [attr.disabled]="!isAdministrator ? '' : null" [formControl]="perfil">
+                <option value="" hidden>Profesor</option>
+                <option value="Profesor">Profesor</option>
+                <option value="Participante">Participante</option>
+                <option value="Administrador">Administrador</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="formButtons desktopButtons">
+        <button class="btn btn-success mt-4" (click)="saveUser()"><i class="fa-solid fa-check"></i>&nbsp; Guardar</button>
+    </div>
+</form>
+
+<div class="clearFloat padding"></div>
+
+<!-- Botón flotante solo visible en móviles -->
+<div class="fab-container">
+    <div class="fab-content">
+      <span (click)="saveUser()" class="material-icons">done</span>
+    </div>
+</div>

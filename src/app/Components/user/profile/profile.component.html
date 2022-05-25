@@ -1,0 +1,55 @@
+<!-- Formulario -->
+<form [formGroup]="userForm">
+  <div class="row">
+    <div class="col-12 col-md-6 col-xl-4 padding-t">
+      <img class="profilePicture" src="assets/images/{{ profilePicture }}" alt="Imagen de perfil">
+    </div>
+    <div class="col-12 col-md-6 col-xl-8">
+      <div class="row">
+        <div class="col-12">
+          <label for="nombre" class="form-label mt-3">Nombre</label>
+          <input type="text" class="form-control" [formControl]="nombre" readonly>
+        </div>
+        <div class="col-12">
+          <label for="apellidos" class="form-label mt-3">Apellidos</label>
+          <input type="text" formControlName="apellidos" class="form-control" readonly>
+        </div>
+        <div class="col-12">
+          <label for="email" class="form-label mt-3">Correo electrónico</label>
+          <input type="email" class="form-control" [formControl]="email" readonly>
+        </div>
+        <div class="col-12">
+          <label for="perfil" class="form-label mt-3">Perfil</label>
+          <input type="text" class="form-control" [formControl]="perfil" readonly>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="formButtons desktopButtons">
+    <button class="btn btn-danger mt-4" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp; Cerrar sesión</button>
+    <button *ngIf="showOtherUsersButton" class="btn btn-success mt-4" (click)="userList()"><i class="fa-solid fa-users"></i>&nbsp; Otros usuarios</button>
+    <button class="btn btn-warning mt-4" (click)="editUser(userId)"><i class="fa-solid fa-user-pen"></i>&nbsp; Modificar</button>
+  </div>
+</form>
+
+<div class="clearFloat padding"></div>
+
+<!-- Botón flotante sólo visible en móviles -->
+<div class="fab-container">
+  <div class="fab">
+    <div class="fab-content">
+      <span class="material-icons">more_vert</span>
+    </div>
+  </div>
+
+  <div class="sub-button edit">
+    <span (click)="editUser(userId)" class="material-icons">edit</span>
+  </div>
+  <div *ngIf="showOtherUsersButton" class="sub-button users">
+    <span (click)="userList()" class="material-icons">group</span>
+  </div>
+  <div class="sub-button logout">
+      <span (click)="logout()" class="material-icons">logout</span>
+  </div>
+</div>

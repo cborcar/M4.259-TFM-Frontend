@@ -1,0 +1,113 @@
+#topNavBar {
+    height: 64px;
+    padding: 0;
+    background-color: #2e556d;
+    box-shadow: 0 1px 5px rgb(100, 100, 100);
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+}
+
+#fullTitle {
+    float: left;
+    padding: 5px 0px 5px 25px;
+}
+
+.logo {
+    width: 54px;
+    margin-right: 15px;
+}
+
+.title {
+    color: #e9ecef;
+    font-size: 1.6rem;
+    vertical-align: middle;
+}
+
+#topNavMenu {
+    margin-right: 25px;
+    float: right;
+}
+  
+#topNavMenu ul {
+    height: 64px;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#topNavMenu li {
+    margin: 0;  
+}
+
+button {
+    border: 0px;
+    background-color: transparent;
+}
+
+.icon{
+    border-left: 1px solid #e9ecef;
+    padding: 19px 15px;
+}
+
+.whiteIcon{
+    color: #e9ecef;
+}
+
+.userData {
+    padding-top: 10px;
+}
+
+.userData p {
+    color: #e9ecef;
+    margin: 0;
+    padding: 0;
+}
+
+.userProfile {
+    font-size: 0.8rem;
+}
+
+#bottomNavBar {
+    display: none;
+    width: 100%;
+    background-color: #2e556d;
+    box-shadow: 0 1px 5px rgb(100, 100, 100);
+    position: fixed;
+    bottom: 0;
+    overflow: hidden;
+}
+
+#bottomNavMenu ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    height: 70px;
+    padding: 0;
+    margin: 0;
+}
+
+#bottomNavMenu li {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+    #topNavBar {
+        margin-bottom: 10px;
+    }
+
+    #topNavMenu {
+      display: none;
+    }
+    
+    #bottomNavBar {
+        display: block;
+    }
+
+    .title {
+        font-size: 1.4rem;
+    }
+}

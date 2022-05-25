@@ -1,0 +1,85 @@
+<!-- Loading spinner -->
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Listado de solicitudes -->
+<div id="requestList">
+    <div class="row mb-4">
+        <div class="form-group col-12 col-md-6">
+            <button class="btn btn-primary desktopButtons" (click)="requestForm('')">
+                <i class="fa-solid fa-plus"></i>&nbsp; Nueva solicitud
+            </button>
+        </div>
+
+        <div class="form-group col-12 col-md-6">
+            <select #selectList id="search" class="form-select" (change)="loadRequests(selectList.value)">
+                <option value="" hidden>Pendientes</option>
+                <option value="Pendientes">Pendientes</option>
+                <option value="Resuelta">Resueltas</option>
+                <option value="Cancelada">Canceladas</option>
+                <option value="Todas">Todas</option>
+            </select>
+        </div>
+    </div>
+
+    <div *ngIf="showEmptyMessage">
+        <h4>No existe ninguna solicitud.</h4>
+    </div>
+
+    <!-- Listado de solicitudes versión escritorio -->
+    <div *ngIf="!showEmptyMessage" class="container itemsListDesktop">
+        <table>
+            <thead>
+                <tr>
+                    <th>&nbsp;Fecha</th>
+                    <th>&nbsp;Descripción</th>
+                    <th>&nbsp;Tipo</th>
+                    <th>&nbsp;Estado</th>
+                    <th>&nbsp;Detalle</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="greyBorder" *ngFor="let request of requests">
+                    <td>{{request.created_at | date: 'dd/MM/YYYY' }}</td>
+                    <td>{{request.detalle | slice:0:100 }} <span *ngIf="request.detalle.length>100">...</span></td>
+                    <td>{{request.tipo}}</td>
+                    <td><span [className]="request.estado">{{request.estado}}</span></td>
+                    <td>
+                        <button class="blueIcon" title="Ver detalles" (click)="requestForm(request.id)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Listado de solicitudes versión móvil -->
+    <div *ngIf="!showEmptyMessage" class="container itemListMobile">
+        <div class="itemMobile" *ngFor="let request of requests" (click)="requestForm(request.id)">
+            <div>
+                <span class="requestHeaderLeft">
+                    {{ request.created_at | date: 'dd/MM/YYYY' }}
+                </span>
+                <span class="requestHeaderRight">
+                  {{ request.tipo }}
+                </span>
+            </div>
+            <div class="requestBody">
+              <p>
+                {{ request.detalle | slice:0:100 }} <span *ngIf="request.detalle.length>100">...</span>
+              </p>
+              <p class="alignRight" >
+                <span [className]="request.estado">{{request.estado}}</span>
+              </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botón flotante solo visible en móviles -->
+<div class="fab-container">
+    <div class="fab-content">
+      <span class="material-icons" (click)="requestForm('')">add</span>
+    </div>
+</div>

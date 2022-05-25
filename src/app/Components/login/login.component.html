@@ -1,0 +1,37 @@
+<ngx-loading [show]="loading"></ngx-loading>
+
+<div class="container">
+
+    <img class="logo" src="assets/images/logo_CC.png" alt="Logo Instituto">
+
+    <h3 class="text-center">IES Cardenal Cisneros</h3>
+
+    <form [formGroup]="loginForm" class="form mt-3" (ngSubmit)="submit()">
+        <div class="form-group mb-3">
+            <input type="email" class="form-control" [class.is-invalid]="email.errors && pressedLogin" [formControl]="email" placeholder="Correo electrónico" />
+            
+            <div class="invalid-feedback" *ngIf="email.errors?.['required']">El correo es un campo requerido.</div>
+            <div class="invalid-feedback" *ngIf="email.errors?.['pattern']">El correo no tiene un formato válido.</div>
+        </div>
+        <div class="from-group mb-3">
+            <input type="password" class="form-control" [class.is-invalid]="password.errors && pressedLogin" [formControl]="password" placeholder="Contraseña" />
+            
+            <div class="invalid-feedback" *ngIf="password.errors?.['required']">La contraseña es un campo requerido.</div>
+            <div class="invalid-feedback" *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+            <div class="invalid-feedback" *ngIf="password.errors?.['maxlength']">La contraseña no puede superar los 16 caracteres.</div>
+        </div>
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="rememberCheck" [formControl]="rememberCheck">
+            <label class="form-check-label" for="rememberCheck">
+              Recuérdame
+            </label>
+          </div>
+
+        <button class="btn btn-primary mt-4 center">Iniciar sesión</button>
+    </form>
+
+    <div class="mt-4 alignRight">
+        <a href="mailto:cborcar637@iesalbox.com" class="link-secondary">Informar de un problema</a>
+    </div>
+</div>

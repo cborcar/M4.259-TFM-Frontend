@@ -1,0 +1,134 @@
+<!-- Loading spinner -->
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Formulario -->
+<form id="requestForm" [formGroup]="requestForm" class="form">
+    <div class="row">
+        <div class="form-group col-12 col-sm-3 col-lg-3">
+            <label for="created_at" class="form-label mt-3">Fecha</label>
+            <input type="text" formControlName="created_at" class="form-control" readonly>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 col-lg-6">
+            <label for="autor" class="form-label mt-3">Autor</label>
+            <input type="text" formControlName="autor" class="form-control" readonly>
+        </div>
+
+        <div class="form-group col-12 col-sm-3 col-lg-3">
+            <label for="tipo" class="form-label mt-3">Tipo</label>
+            <select id="tipo" class="form-select" [attr.disabled]="isReadOnly ? '' : null" [formControl]="tipo">
+                <option value="" hidden>Avería</option>
+                <option value="Averia">Avería</option>
+                <option value="RRSS">Redes sociales</option>
+                <option value="Credenciales">Credenciales</option>
+                <option value="Prestamo">Préstamo</option>
+                <option value="Otros">Otros</option>
+            </select>
+        </div>
+    </div>
+ 
+    <div class="row mt-3">  
+        <div class="form-group col-12">
+            <label for="detalle" class="form-label">Descripción</label>
+            <textarea formControlName="detalle" class="form-control" id="detalle" rows="6" [class.is-invalid]="detalle.errors && pressedSave" [formControl]="detalle" [readonly]="isReadOnly"></textarea>
+
+            <div class="invalid-feedback" *ngIf="detalle.errors?.['required']">Este campo es obligatorio.</div>
+        </div>
+    </div>
+
+    <div class="formButtons desktopButtons">
+        <button *ngIf="canEdit && isReadOnly" class="btn btn-warning mt-4" (click)="activateEdit()"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</button>
+        <button *ngIf="!isReadOnly" class="btn btn-success mt-4" (click)="saveRequest()"><i class="fa-solid fa-check"></i>&nbsp; Guardar</button>
+    </div>
+</form>
+
+<div class="clearFloat"></div>
+
+<!-- Listado de intervenciones realizadas sobre esta solicitud -->
+<div *ngIf="!haveInterventions && isUpdateMode" class="mt-4 mb-2">
+    <p>Esta solicitud no tiene ninguna intervención registrada.</p>
+</div>
+
+<div *ngIf="haveInterventions">
+
+    <div class="mt-4 mb-2">
+        Intervenciones:
+    </div>
+
+    <div class="container itemsListDesktop">
+        <table>
+            <thead>
+                <tr>
+                    <th>&nbsp;Fecha</th>
+                    <th>&nbsp;Descripción</th>
+                    <th>&nbsp;Usuario</th>
+                    <th>&nbsp;Estado</th>
+                    <th>&nbsp;Detalle</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="greyBorder" *ngFor="let intervention of interventions, let i = index">
+                    <td>{{ intervention.created_at | date: 'dd/MM/YYYY' }}</td>
+                    <td>{{ intervention.detalle | slice:0:100 }} <span *ngIf="intervention.detalle.length>100">...</span></td>
+                    <td>{{ interventionCreator[i] }}</td>
+                    <td><span [className]="intervention.cambio_estado">{{ intervention.cambio_estado }}</span></td>
+                    <td>
+                        <button class="blueIcon" title="Ver detalles" (click)="interventionForm(intervention.id)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container itemListMobile">
+        <div class="itemMobile" *ngFor="let intervention of interventions, let i = index" (click)="interventionForm(intervention.id)">
+            <div>
+                <span class="requestHeaderLeft">
+                    {{ intervention.created_at | date: 'dd/MM/YYYY' }}
+                </span>
+                <span class="requestHeaderRight">
+                  {{ interventionCreator[i] }}
+                </span>
+            </div>
+            <div class="requestBody">
+              <p>
+                {{ intervention.detalle | slice:0:100 }} <span *ngIf="intervention.detalle.length>100">...</span>
+              </p>
+              <p class="alignRight" >
+                <span [className]="intervention.cambio_estado">{{ intervention.cambio_estado }}</span>
+              </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="canEdit" class="formButtons">
+    <button class="btn btn-primary mt-4 blueButton desktopButtons" (click)="interventionForm('')"><i class="fa-solid fa-plus"></i>&nbsp; Nueva intervención</button>
+</div>
+
+<div class="clearFloat padding"></div>
+
+<!-- Botón flotante sólo visible en móviles -->
+<div class="fab-container">
+    <div *ngIf="canEdit">
+        <div *ngIf="isReadOnly" class="fab more">
+        <div class="fab-content">
+            <span class="material-icons">more_vert</span>
+        </div>
+        </div>
+        <div *ngIf="isReadOnly" class="sub-button edit">
+            <span (click)="activateEdit()" class="material-icons">edit</span>
+        </div>
+        <div *ngIf="isReadOnly" class="sub-button add">
+            <span (click)="interventionForm('')" class="material-icons">add</span>
+        </div>
+    </div>
+    <div *ngIf="!isReadOnly" class="fab save">
+        <div class="fab-content save">
+          <span (click)="saveRequest()" class="material-icons">done</span>
+        </div>
+    </div>
+</div>

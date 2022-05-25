@@ -1,0 +1,54 @@
+<!-- Loading spinner -->
+<ngx-loading [show]="loading"></ngx-loading>
+
+<!-- Formulario -->
+<form [formGroup]="interventionForm">
+
+    <div class="row">
+        <div class="form-group col-12 col-sm-3 col-lg-3">
+            <label for="created_at" class="form-label mt-3">Fecha</label>
+            <input type="text" formControlName="created_at" class="form-control" readonly>
+        </div>
+        <div class="form-group col-12 col-sm-6 col-lg-6">
+            <label for="autor" class="form-label mt-3">Autor</label>
+            <input type="text" formControlName="autor" class="form-control" readonly>
+        </div>
+        <div class="form-group col-12 col-sm-3 col-lg-3">
+            <label for="cambio_estado" class="form-label mt-3">Estado</label>
+            <select id="cambio_estado" class="form-select" [attr.disabled]="isReadOnly ? '' : null" [formControl]="cambio_estado">
+                <option value="" hidden>Abierta</option>
+                <option value="Abierta">Abierta</option>
+                <option value="Retrasada">Retrasada</option>
+                <option value="Resuelta">Resuelta</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+        </div>
+    </div>
+ 
+    <div class="row mt-3">  
+        <div class="form-group col-12">
+            <label for="detalle" class="form-label">Descripción</label>
+            <textarea formControlName="detalle" class="form-control" id="detalle" rows="8" [class.is-invalid]="detalle.errors && pressedSave" [formControl]="detalle" [readonly]="isReadOnly"></textarea>
+
+            <div class="invalid-feedback" *ngIf="detalle.errors?.['required']">Este campo es obligatorio.</div>
+        </div>
+    </div>
+
+    <div class="formButtons desktopButtons">
+        <button *ngIf="canEdit && isReadOnly" class="btn btn-warning mt-4" (click)="activateEdit()"><i class="fa-solid fa-pen-to-square"></i>&nbsp; Modificar</button>
+        <button *ngIf="!isReadOnly" class="btn btn-success mt-4" (click)="saveIntervention()"><i class="fa-solid fa-check"></i>&nbsp; Guardar</button>
+    </div>
+</form>
+
+<div class="clearFloat padding"></div>
+
+<!-- Botón flotante solo visible en móviles -->
+<div class="fab-container">
+    <div *ngIf="canEdit && isReadOnly" class="fab-content edit">
+        <span class="material-icons" (click)="activateEdit()">edit</span>
+    </div>
+
+    <div *ngIf="!isReadOnly" class="fab-content save">
+        <span class="material-icons" (click)="saveIntervention()">done</span>
+    </div>
+</div>

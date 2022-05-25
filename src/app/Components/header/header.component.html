@@ -1,0 +1,60 @@
+<!-- Este menú solo se muestra si está logueado -->
+<div id="topNavBar" *ngIf="showNavigationMenu">
+    <div id="fullTitle">
+        <img class="logo" src="assets/images/logo_CC.png" alt="Logo Instituto">
+        <span class="title" href="#">IES Cardenal Cisneros</span>
+    </div>
+      <nav id="topNavMenu">
+        <ul>
+          <li class="icon">
+            <button title="Noticias" (click)="news()">
+              <i class="fa-solid fa-newspaper fa-xl whiteIcon"></i>
+            </button>
+          </li>
+          <li class="icon">
+            <button title="Solicitudes" (click)="request()">
+              <i class="fa-solid fa-comment fa-xl whiteIcon"></i>
+            </button>
+          </li>
+          <li class="icon">
+            <div ngbDropdown class="d-inline-block">
+              <button class="whiteIcon" title="Usuario" id="userDropdownMenu" ngbDropdownToggle>
+                <i class="fa-solid fa-user fa-xl whiteIcon"></i>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="userDropdownMenu">
+                <button ngbDropdownItem (click)="userProfile()"><i class="fa-solid fa-address-card"></i> &nbsp; Perfil</button>
+                <button ngbDropdownItem (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Cerrar sesión</button>
+              </div>
+            </div>
+          </li>
+          <li class="userData">
+            <p class="userName">{{ loggedUser.nombre }} {{ loggedUser.apellidos }} </p>
+            <p class="userProfile" >{{ loggedUser.perfil }} </p>
+          </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Este menú solo se muestra si estamos en un móvil -->
+<div id="bottomNavBar" *ngIf="showNavigationMenu">
+  <nav id="bottomNavMenu">
+    <ul>
+      <li>
+        <button title="Noticias" (click)="news()">
+          <i class="fa-solid fa-newspaper fa-2xl whiteIcon"></i>
+        </button>
+      </li>
+      <li>
+        <button title="Solicitudes" (click)="request()">
+          <i class="fa-solid fa-comment fa-2xl whiteIcon"></i>
+        </button>
+      </li>
+      <li>
+        <button class="whiteIcon" title="Usuario" (click)="userProfile()">
+          <i class="fa-solid fa-user fa-2xl whiteIcon"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+

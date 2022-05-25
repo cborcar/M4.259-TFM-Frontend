@@ -1,0 +1,111 @@
+input[readonly], textarea[readonly] {
+    background-color: #ffffff;
+}
+
+.formButtons {
+    float: right;
+}
+
+.formButtons button{
+    margin-left: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.clearFloat {
+    clear: both;
+}
+
+.padding {
+    padding-bottom: 30px;
+}
+
+/* Botón flotante solo visible en móviles */
+.fab-container {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    user-select: none;
+    position: absolute;
+    bottom: 30px; right: 30px;
+    &:hover {
+      height: 100%;
+      .sub-button:nth-child(2) { transform: translateY(-80px)}
+      .sub-button:nth-child(3) { transform: translateY(-140px)}
+      .sub-button:nth-child(4) {transform: translateY(-200px)}
+      .sub-button:nth-child(5) {transform: translateY(-260px)}
+    }
+    
+    .fab {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 120px;
+      right: 40px;
+      background-color: #2e556d;
+      box-shadow: 2px 2px 3px #999;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+  
+      .fab-content {
+        display: flex;
+        align-items: center; 
+        justify-content: center;
+        height: 100%; 
+        width: 100%;
+        .material-icons {
+          color: white;
+          font-size: 36px;
+        }
+      }
+    }
+  
+    .sub-button {
+      position: fixed;
+      display: flex;
+      align-items: center; 
+      justify-content: center;
+      height: 50px; 
+      width: 50px;
+      bottom: 125px;
+      right: 45px;
+      border-radius: 50%;
+      box-shadow: 2px 2px 3px #999;
+      transition: all .3s ease;
+      &:hover {
+        cursor: pointer;
+      }
+      .material-icons {
+        color: white;
+      }
+    }
+
+    .edit {
+        background-color: #ffc107;
+    }
+
+    .delete {
+        background-color: #dc3545;
+    }
+
+    .save {
+        background-color: #198754;
+    }
+  }
+
+/* Adaptaciones para móviles */
+@media screen and (max-width: 767px) {
+    .padding {
+        padding-bottom: 110px;
+    }
+
+    .desktopButtons {
+        display: none;
+    }
+
+    .fab-container {
+        display: flex;
+    }
+}
