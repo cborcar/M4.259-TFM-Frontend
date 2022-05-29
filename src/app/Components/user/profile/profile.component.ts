@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoggedUserData } from 'src/app/globals';
+import { LoggedUserData, STORAGE_URL } from 'src/app/globals';
 import { HeaderMenuDTO } from 'src/app/Models/header-menu.dto';
 import { HeaderMenuService } from 'src/app/Services/header-menu.service';
 
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   apellidos: FormControl;
   email: FormControl;
   perfil: FormControl;
-  storageURL: string;
+  storageURL: string = STORAGE_URL;
 
   userForm: FormGroup;
   profilePicture: string;
@@ -30,8 +30,6 @@ export class ProfileComponent implements OnInit {
   ) {
     this.profilePicture = 'blank.png';
     this.showOtherUsersButton = false;
-    this.storageURL = ''; //La ruta donde se almacenan las imágenes en local
-    //this.storageURL = '../../storage/app/public/userImages/'; //La ruta donde se almacenan las imagenes en el servidor
 
     this.userId = this.loggedUser.id;
     this.nombre = new FormControl('');
